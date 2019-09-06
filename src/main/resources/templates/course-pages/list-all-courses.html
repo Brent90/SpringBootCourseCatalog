@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
+
+
     <title>Courses</title>
 </head>
 <body>
@@ -21,7 +23,6 @@
         <tr>
             <th>CourseId</th>
             <th>Title</th>
-            <th>Description</th>
             <th>Credit Hours</th>
             <th>Department</th>
             <th>Action</th>
@@ -32,8 +33,6 @@
         <tr th:each="temp : ${courses}">
             <td th:text="${temp.courseId}"></td>
             <td th:text="${temp.title}"></td>
-<!--            <td th:text="${temp.description}"></td>-->
-            <td><a href="#"  th:text="${temp.description}"/></td>
             <td th:text="${temp.creditHours}"></td>
             <td th:text="${temp.department}"></td>
 
@@ -41,12 +40,13 @@
             <td>
                 <a class="btn btn-info btn-sm"
                    th:href="@{/instructorDetails(instructorId=${temp.instructor.id})}">
-                    Instructors</a>
-            </td>
+                    Instructor</a>
 
-            <!--                <a class="btn btn-info btn-sm" th:href="@{/app/instructorCourses(instructorId=${temp.id})}">-->
-            <!--                    Courses Taught-->
-            <!--                </a>-->
+                <a class="btn btn-info btn-sm"
+                   th:href="@{/courseDescription(courseId=${temp.id})}">
+                    Description</a>
+
+            </td>
 
 
         </tr>
@@ -59,5 +59,19 @@
 
 
 
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+
+
+    /*]]>*/
+</script>
+
+
+
+
 </body>
+
+
 </html>

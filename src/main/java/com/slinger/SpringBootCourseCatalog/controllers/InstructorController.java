@@ -25,7 +25,7 @@ public class InstructorController {
     public String getAllInstructors(Model model) {
         List<Instructor> instructors = instructorService.getInstructors();
         model.addAttribute("instructors", instructors);
-        return "list-all-instructors";
+        return "instructor-pages/list-all-instructors";
     }
 
     @RequestMapping("/instructorDetails")
@@ -36,7 +36,7 @@ public class InstructorController {
         model.addAttribute("instructor", instructor);
         model.addAttribute("instructorDetails", detail);
 
-        return "instructor-detail-page";
+        return "instructor-pages/instructor-detail";
     }
 
 }

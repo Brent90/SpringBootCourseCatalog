@@ -21,4 +21,9 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> getAllCourses() {
         return courseRepository.findAll();
     }
+
+    @Override
+    public Course getCourseById(int id) {
+        return courseRepository.findById(id).get();
+    }
 }

@@ -40,10 +40,15 @@ public class InstructorCRUD {
 
     @RequestMapping("/createCourse")
     public void createCourse() {
-//        Course course = new Course("CHM300", "Organic Chemistry 1", "course description here", "4", "Chemistry");
-//        Instructor instructor = instructorService.getInstructorById(3);
+//        Course course = new Course("MATH404", "Differential Equations", "course description here", "3", "Mathematics");
+//        Instructor instructor = instructorService.getInstructorById(1);
+//        Instructor instructor2 = instructorService.getInstructorById(2);
 //
 //        instructor.addCourse(course);
+//        instructor2.addCourse(course);
+//        course.addInstructor(instructor);
+//        course.addInstructor(instructor2);
+//
 //        instructorService.createInstructor(instructor);
 
     }

@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>Title</title>
+
+
+
+
 </head>
 <body>
 
 <div class="container">
-    <h2 th:text="${instructor.fullName}"></h2>
+    <h2 class="spacing" th:text="${instructor.fullName}"></h2>
 
     <h3>Position</h3>
     <h4 th:text="${instructorDetails.position}"></h4>
@@ -27,7 +31,10 @@
     <h5 th:text="${instructorDetails.bio}"></h5>
 
 
-<a th:href="@{/listInstructors}">Go Back</a>
+    <div style="padding: 5px">
+        <a th:href="@{/listInstructors}">Go Back To Instructors</a>
+        <a style="margin-left: 25px" th:href="@{/listCourses}">Go Back To Course Catalog</a>
+    </div>
 
 </div>
 
