@@ -1,0 +1,24 @@
+package com.slinger.SpringBootCourseCatalog.service;
+
+import com.slinger.SpringBootCourseCatalog.entity.Course;
+import com.slinger.SpringBootCourseCatalog.repository.CourseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class CourseServiceImpl implements CourseService {
+
+    private CourseRepository courseRepository;
+
+    @Autowired
+    public CourseServiceImpl(CourseRepository courseRepository) {
+        this.courseRepository = courseRepository;
+    }
+
+    @Override
+    public List<Course> getAllCourses() {
+        return courseRepository.findAll();
+    }
+}

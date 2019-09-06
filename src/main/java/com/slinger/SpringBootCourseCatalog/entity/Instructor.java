@@ -80,6 +80,27 @@ public class Instructor {
         this.courses = courses;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public void addCourse(Course course) {
+        if(this.courses == null) {
+            this.courses = new ArrayList<>();
+        }
+        this.courses.add(course);
+        course.setInstructor(this);
+    }
+
+
+    public String getFullName() {
+        return this.firstName +  " " + this.lastName;
+    }
 
     @Override
     public String toString() {
