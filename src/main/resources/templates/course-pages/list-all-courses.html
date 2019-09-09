@@ -57,10 +57,11 @@
             <td th:text="${temp.department}"></td>
 
 
-            <td>
+             <td>
                 <a class="btn btn-info btn-sm"
                    th:href="@{/instructorDetails(courseId=${temp.id})}">
-                    Instructor</a>
+                    Instructor(s)</a>
+
 
                 <a class="btn btn-info btn-sm"
                    th:href="@{/courseDescription(courseId=${temp.id})}">

@@ -7,6 +7,7 @@ import com.slinger.SpringBootCourseCatalog.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,6 +41,11 @@ public class InstructorController {
         Course course = courseService.getCourseById(id);
 
         List<Instructor> instructors = course.getInstructors();
+
+        if(instructors.isEmpty()) {
+            return "instructor-pages/no-instructor-found";
+        }
+
 
         model.addAttribute("instructors", instructors);
 
