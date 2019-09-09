@@ -2,8 +2,10 @@ package com.slinger.SpringBootCourseCatalog.controllers;
 
 import com.slinger.SpringBootCourseCatalog.entity.Course;
 import com.slinger.SpringBootCourseCatalog.entity.Instructor;
+import com.slinger.SpringBootCourseCatalog.pojos.IDHolder;
 import com.slinger.SpringBootCourseCatalog.service.CourseService;
 import com.slinger.SpringBootCourseCatalog.service.InstructorService;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -89,8 +91,33 @@ public class AdminController {
         return "admin-pages/create-instructor";
 
     }
-    //     END OF CREATING NEW INSTRUCTOR
+    //     END OF CREATING NEW INSTRUCTOR CODE
 
 
+    //  START OF ADDING INSTRUCTOR TO COURSE CODE
+    @RequestMapping("/linkInstructorToCourse")
+    public String showFormToLinkInstructorToCourse(Model model) {
+        IDHolder id_Holder = new IDHolder();
+        model.addAttribute("id_Holder", id_Holder);
+
+        return "admin-pages/link-course-and-instructor";
+    }
+
+    @PostMapping("/processInstructorToCourse")
+    public String processInstructorToCourse(@ModelAttribute("id_Holder") IDHolder holder) {
+        int courseId = holder.getCourseId();
+        int instructorId = holder.getInstructorId();
+        Course course = courseService.getCourseById(courseId);
+        Instructor instructor = instructorService.getInstructorById(instructorId);
+
+        instructor.addCourse(course);
+
+        instructorService.createInstructor(instructor);
+
+
+        return "admin-pages/admin-home";
+    }
+
+    // END OF ADDING INSTRUCTOR TO COURSE CODE
 
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <title>Link</title>
+</head>
+<body>
+
+
+<div class="container" style="padding: 30px;">
+
+    <h3>Add Instructor To A Course</h3>
+    <hr>
+
+    <form th:action="@{/admin/processInstructorToCourse}" th:object="${id_Holder}" method="post" >
+
+        <div class="form-group">
+            <label for="courseId">Course Id</label>
+            <input th:field="*{courseId}" type="text" class="form-control" id="courseId" placeholder="Enter courseId">
+        </div>
+
+        <div class="form-group">
+            <label for="instructorId">Instructor Id</label>
+            <input th:field="*{instructorId}" type="text" class="form-control" id="instructorId" placeholder="Enter instructorId">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+
+    <hr>
+
+    <a th:href="@{/admin}">Go Back</a>
+
+
+
+</div>
+
+
+
+
+
+</body>
+</html>
