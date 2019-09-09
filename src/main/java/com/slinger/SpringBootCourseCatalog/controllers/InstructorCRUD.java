@@ -52,15 +52,15 @@ public class InstructorCRUD {
 
     @RequestMapping("/detail")
     public void addInstructorDetail() {
-        Instructor instructor = instructorService.getInstructorById(3);
-        InstructorDetail detail = new InstructorDetail("Professor of Mathematics ", "444-5555", "email@gmail", "999 Everett Tower, Mail Stop 345", "bio goes here");
-        instructor.setInstructorDetail(detail);
-        instructorService.createInstructor(instructor);
+//        Instructor instructor = instructorService.getInstructorById(2);
+//        InstructorDetail detail = new InstructorDetail("Professor of Physics ", "444-5555", "email@gmail", "999 Everett Tower, Mail Stop 345", "bio goes here");
+//        instructor.setInstructorDetail(detail);
+//        instructorService.createInstructor(instructor);
 
-        Instructor instructor2 = instructorService.getInstructorById(4);
-        InstructorDetail detail2 = new InstructorDetail("Professor of Mathematics ", "675-2222", "email@gmail", "345 Everett Tower, Mail Stop 345", "bio goes here");
-        instructor2.setInstructorDetail(detail2);
-        instructorService.createInstructor(instructor2);
+//        Instructor instructor2 = instructorService.getInstructorById(4);
+//        InstructorDetail detail2 = new InstructorDetail("Professor of Mathematics ", "675-2222", "email@gmail", "345 Everett Tower, Mail Stop 345", "bio goes here");
+//        instructor2.setInstructorDetail(detail2);
+//        instructorService.createInstructor(instructor2);
 
 
     }

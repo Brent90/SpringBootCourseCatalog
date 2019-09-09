@@ -19,7 +19,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+        return courseRepository.findByOrderByDepartmentAsc();
     }
 
     @Override

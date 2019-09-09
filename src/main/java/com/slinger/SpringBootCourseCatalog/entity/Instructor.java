@@ -78,6 +78,9 @@ public class Instructor {
     }
 
     public InstructorDetail getInstructorDetail() {
+        if(instructorDetail == null) {
+            return new InstructorDetail();
+        }
         return instructorDetail;
     }
 

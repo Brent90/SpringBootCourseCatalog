@@ -2,6 +2,7 @@ package com.slinger.SpringBootCourseCatalog.controllers;
 
 import com.slinger.SpringBootCourseCatalog.entity.Course;
 import com.slinger.SpringBootCourseCatalog.entity.Instructor;
+import com.slinger.SpringBootCourseCatalog.entity.InstructorDetail;
 import com.slinger.SpringBootCourseCatalog.service.CourseService;
 import com.slinger.SpringBootCourseCatalog.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,21 +38,30 @@ public class InstructorController {
 
     @RequestMapping("/instructorDetails")
     public String getInstructorDetail(@RequestParam("courseId") int id, Model model) {
-
         Course course = courseService.getCourseById(id);
-
         List<Instructor> instructors = course.getInstructors();
 
         if(instructors.isEmpty()) {
             return "instructor-pages/no-instructor-found";
         }
 
-
         model.addAttribute("instructors", instructors);
-
-
         return "instructor-pages/list-detail-update";
     }
+
+
+    @RequestMapping("/fullInstructorDetails")
+    public String getAllInstructorDetail(@RequestParam("id") int id, Model model) {
+
+        Instructor instructor = instructorService.getInstructorById(id);
+
+        System.out.println(instructor);
+
+        model.addAttribute("instructor", instructor);
+        return "instructor-pages/instructor-detail";
+    }
+
+
 
 
 

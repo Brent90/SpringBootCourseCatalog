@@ -45,7 +45,13 @@ public class InstructorDetail {
         this.id = id;
     }
 
+
     public String getPosition() {
+        if(position == null) {
+            System.out.println("true");
+            return "position is currently not set";
+        }
+
         return position;
     }
 
@@ -54,6 +60,12 @@ public class InstructorDetail {
     }
 
     public String getPhone() {
+        if(phone == null) {
+            System.out.println("true");
+            return "phone is currently not set";
+        }
+
+
         return phone;
     }
 
@@ -62,6 +74,11 @@ public class InstructorDetail {
     }
 
     public String getEmail() {
+        if(email == null) {
+            System.out.println("true");
+            return "email is currently not set";
+        }
+
         return email;
     }
 
@@ -70,6 +87,11 @@ public class InstructorDetail {
     }
 
     public String getLocation() {
+        if(location == null) {
+            System.out.println("true");
+            return "location is currently not set";
+        }
+
         return location;
     }
 
@@ -78,6 +100,11 @@ public class InstructorDetail {
     }
 
     public String getBio() {
+        if(bio == null) {
+            System.out.println("true");
+            return "bio is currently not set";
+        }
+
         return bio;
     }
 

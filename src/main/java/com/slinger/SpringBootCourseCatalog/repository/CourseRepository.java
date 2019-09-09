@@ -14,6 +14,10 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
     @Query("Select c from Course c where c.department like %:department%")
     List<Course> findByPlaceContaining(String department);
 
+    List<Course> findByOrderByDepartmentAsc();
+
+
+
 
 
 }

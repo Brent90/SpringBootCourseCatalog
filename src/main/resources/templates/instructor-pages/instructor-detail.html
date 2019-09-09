@@ -9,23 +9,24 @@
 <body>
 
 <div class="container">
+
     <h2 class="spacing" th:text="${instructor.fullName}"></h2>
 
     <h3>Position</h3>
-    <h4 th:text="${instructorDetails.position}"></h4>
+    <h4 th:text="${instructor.instructorDetail.position}"></h4>
 
     <h3>Phone</h3>
-    <h4 th:text="${instructorDetails.phone}"></h4>
+    <h4 th:text="${instructor.instructorDetail.phone}"></h4>
 
     <h3>Email</h3>
-    <h4 th:text="${instructorDetails.email}"></h4>
+    <h4 th:text="${instructor.instructorDetail.email}"></h4>
 
     <h3>Location</h3>
-    <h4 th:text="${instructorDetails.location}"></h4>
+    <h4 th:text="${instructor.instructorDetail.location}"></h4>
 
 
     <h4>Bio</h4>
-    <h5 th:text="${instructorDetails.bio}"></h5>
+    <h5 th:text="${instructor.instructorDetail.bio}"></h5>
 
 
     <div style="padding: 5px">

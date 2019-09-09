@@ -47,6 +47,14 @@ public class CourseController {
     @RequestMapping("/searchByDepartment")
     public String searchByDepartment(@ModelAttribute("department") Department selected, Model model) {
         String department = selected.getDepartment();
+
+        if(department.equals("All")) {
+            List<Course> courses = courseService.getAllCourses();
+            model.addAttribute("courses", courses);
+            return "course-pages/list-all-courses";
+        }
+
+
         List<Course> courses = courseService.getCoursesByDepartment(department);
         model.addAttribute("courses", courses);
 
@@ -57,6 +65,7 @@ public class CourseController {
     public List<Department> getDepartments(Model model) {
         List<Department> departmentList = new ArrayList<>();
 
+        departmentList.add(new Department("All"));
         departmentList.add(new Department("Biology"));
         departmentList.add(new Department("Chemistry"));
         departmentList.add(new Department("Mathematics"));
