@@ -26,9 +26,22 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
-    @OneToMany(mappedBy = "instructor",
+//    @OneToMany(mappedBy = "instructor",
+//            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+//    private List<Course> courses;
+
+
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinTable(
+            name = "course_instructor",
+            joinColumns = @JoinColumn(name="instructor_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_join_id")
+    )
     private List<Course> courses;
+
 
     public Instructor() {
     }
@@ -94,7 +107,6 @@ public class Instructor {
             this.courses = new ArrayList<>();
         }
         this.courses.add(course);
-        course.setInstructor(this);
     }
 
 

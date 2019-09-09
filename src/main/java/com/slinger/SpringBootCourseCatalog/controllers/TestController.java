@@ -3,15 +3,15 @@ package com.slinger.SpringBootCourseCatalog.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/app")
+@RestController
 public class TestController {
 
-    @GetMapping("/test")
+    @GetMapping("/")
     public String showTestPage() {
         System.out.println("success");
-        return "test-page";
+        return "home-page-success";
     }
 
 

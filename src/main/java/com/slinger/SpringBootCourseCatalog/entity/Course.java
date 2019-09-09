@@ -28,9 +28,20 @@ public class Course {
     @Column(name = "department")
     private String department;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    @JoinColumn(name = "instructor_id")
-    private Instructor instructor;
+//    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+//    @JoinColumn(name = "instructor_id")
+//    private Instructor instructor;
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinTable(
+            name = "course_instructor",
+            joinColumns = @JoinColumn(name="course_join_id"),
+            inverseJoinColumns = @JoinColumn(name = "instructor_id")
+    )
+    private List<Instructor> instructors;
+
 
     public Course() {
     }
@@ -91,16 +102,24 @@ public class Course {
         this.department = department;
     }
 
-    public Instructor getInstructor() {
-        return instructor;
+
+
+//    public void addInstructor(Instructor instructor) {
+//        if(instructors == null) {
+//            instructors = new ArrayList<>();
+//        }
+//        instructors.add(instructor);
+//
+//    }
+
+
+    public List<Instructor> getInstructors() {
+        return instructors;
     }
 
-    public void setInstructor(Instructor instructor) {
-        this.instructor = instructor;
+    public void setInstructors(List<Instructor> instructors) {
+        this.instructors = instructors;
     }
-
-
-
 
     @Override
     public String toString() {
@@ -111,7 +130,6 @@ public class Course {
                 ", description='" + description + '\'' +
                 ", creditHours='" + creditHours + '\'' +
                 ", department='" + department + '\'' +
-                ", instructor=" + instructor +
                 '}';
     }
 }

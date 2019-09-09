@@ -26,4 +26,17 @@ public class CourseServiceImpl implements CourseService {
     public Course getCourseById(int id) {
         return courseRepository.findById(id).get();
     }
+
+    @Override
+    public List<Course> getCoursesByDepartment(String department) {
+        return courseRepository.findByPlaceContaining(department);
+    }
+
+    @Override
+    public void createCourse(Course course) {
+        courseRepository.save(course);
+
+    }
+
+
 }

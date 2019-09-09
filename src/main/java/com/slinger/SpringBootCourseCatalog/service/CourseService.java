@@ -11,4 +11,11 @@ public interface CourseService  {
 
     public Course getCourseById(int id);
 
+    public List<Course> getCoursesByDepartment(String department);
+
+    public void createCourse(Course course);
+
+
+
+
 }
