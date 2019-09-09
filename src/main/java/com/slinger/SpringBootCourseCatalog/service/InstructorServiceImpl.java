@@ -33,11 +33,14 @@ public class InstructorServiceImpl implements InstructorService {
         return instructorRepository.findById(id).get();
     }
 
-    @Override
-    public void addCourse(Instructor instructor, Course course) {
-        instructor.addCourse(course);
-        instructorRepository.save(instructor);
-    }
+
+
+
+//    @Override
+//    public void addCourse(Instructor instructor, Course course) {
+//        instructor.addCourse(course);
+//        instructorRepository.save(instructor);
+//    }
 
 
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <title>Add Course</title>
+</head>
+<body>
+
+
+<div class="container" style="padding: 30px;">
+
+    <h3>Create A Course</h3>
+    <hr>
+
+    <form th:action="@{/admin/processCreateCourseForm}" th:object="${course}" method="post" >
+
+<!--        this stops hibernate from increasing the id and making an unwanted duplicate entry-->
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-group">
+            <label for="courseId">CourseId</label>
+            <input th:field="*{courseId}" type="text" class="form-control" id="courseId" placeholder="Enter courseId">
+        </div>
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input  th:field="*{title}"  type="text" class="form-control" id="title" placeholder="Enter title">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea  th:field="*{description}"  type="text" class="form-control" id="description" rows="3" placeholder="Enter description" ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="creditHours">Credit Hours</label>
+            <input  th:field="*{creditHours}"  type="text" class="form-control" id="creditHours" placeholder="Enter credit hours" min="0">
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department</label>
+            <input th:field="*{department}" type="text" class="form-control" id="department" placeholder="Enter department">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+
+
+    <hr>
+
+    <a th:href="@{/admin}">Go Back</a>
+
+
+
+</div>
+
+
+
+
+
+</body>
+</html>

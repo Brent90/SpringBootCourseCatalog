@@ -13,7 +13,7 @@ public interface InstructorService {
 
     public Instructor getInstructorById(int id);
 
-    public void addCourse(Instructor instructor, Course course);
+//    public void addCourse(Instructor instructor, Course course);
 
 
 }

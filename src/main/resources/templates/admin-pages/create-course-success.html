@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <title>Added Course</title>
+</head>
+<body>
+
+
+<div class="container" style="padding: 30px;">
+
+    <h3>Course Created</h3>
+    <hr>
+
+    <h4>Course Id</h4>
+    <p th:text="${course.courseId}"></p>
+    <hr>
+
+    <h4>Course Title</h4>
+    <p th:text="${course.title}"></p>
+    <hr>
+
+    <h4>Course Description</h4>
+    <p th:text="${course.description}"></p>
+    <hr>
+
+    <h4>Course Credit Hours</h4>
+    <p th:text="${course.creditHours}"></p>
+    <hr>
+
+    <h4>Course Department</h4>
+    <p th:text="${course.department}"></p>
+    <hr>
+
+
+    <p><a th:href="@{/admin/updateCourse(id=${course.id})}">Edit Course</a></p>
+
+    <p> <a th:href="@{/admin}">Go Back Home</a> </p>
+
+    <p><a th:href="@{/admin/createCourse}">Create new course</a></p>
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+</html>

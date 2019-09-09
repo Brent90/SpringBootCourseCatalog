@@ -23,14 +23,14 @@ public class CourseCrud {
     }
 
 
-    @RequestMapping("/createCourse")
-    public String createCourse() {
-        Course course = new Course("MATH201", "Algebra 1", "course description here", "3", "Mathematics");
-
-        courseService.createCourse(course);
-
-        return "success";
-    }
+//    @RequestMapping("/createCourse")
+//    public String createCourse() {
+//        Course course = new Course("MATH201", "Algebra 1", "course description here", "3", "Mathematics");
+//
+//        courseService.createCourse(course);
+//
+//        return "success";
+//    }
 
     @RequestMapping("/link")
     public String link() {
