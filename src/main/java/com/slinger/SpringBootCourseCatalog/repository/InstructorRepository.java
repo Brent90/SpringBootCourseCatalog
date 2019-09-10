@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface InstructorRepository extends JpaRepository<Instructor, Integer> {
 
-
+    List<Instructor> findByOrderByLastNameAsc();
 
 }

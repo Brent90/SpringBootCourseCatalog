@@ -20,7 +20,7 @@ public class InstructorServiceImpl implements InstructorService {
 
     @Override
     public List<Instructor> getInstructors() {
-        return instructorRepository.findAll();
+        return instructorRepository.findByOrderByLastNameAsc();
     }
 
     @Override

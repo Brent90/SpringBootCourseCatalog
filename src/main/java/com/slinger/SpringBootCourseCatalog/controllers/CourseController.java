@@ -39,6 +39,10 @@ public class CourseController {
         Course course = courseService.getCourseById(id);
         model.addAttribute("course", course);
 
+        if(course.getDescription().isEmpty()) {
+            course.setDescription("Sorry no description available");
+        }
+
         return "course-pages/course-description";
     }
 

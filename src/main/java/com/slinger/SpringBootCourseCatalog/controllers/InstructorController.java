@@ -51,7 +51,7 @@ public class InstructorController {
 
 
     @RequestMapping("/fullInstructorDetails")
-    public String getAllInstructorDetail(@RequestParam("id") int id, Model model) {
+    public String getAllInstructorDetail(@RequestParam("instructorId") int id, Model model) {
 
         Instructor instructor = instructorService.getInstructorById(id);
 
