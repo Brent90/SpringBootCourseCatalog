@@ -28,9 +28,6 @@ public class Course {
     @Column(name = "department")
     private String department;
 
-//    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-//    @JoinColumn(name = "instructor_id")
-//    private Instructor instructor;
 
     @ManyToMany(
             fetch = FetchType.LAZY,
@@ -41,6 +38,18 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "instructor_id")
     )
     private List<Instructor> instructors;
+
+
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinTable(
+            name = "course_student",
+            joinColumns = @JoinColumn(name="course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private List<Student> students;
 
 
 
@@ -105,22 +114,28 @@ public class Course {
     }
 
 
-
-//    public void addInstructor(Instructor instructor) {
-//        if(instructors == null) {
-//            instructors = new ArrayList<>();
-//        }
-//        instructors.add(instructor);
-//
-//    }
-
-
     public List<Instructor> getInstructors() {
         return instructors;
     }
 
     public void setInstructors(List<Instructor> instructors) {
         this.instructors = instructors;
+    }
+
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public void addStudent(Student student) {
+        if(students == null) {
+            students = new ArrayList<>();
+        }
+        students.add(student);
     }
 
     @Override
