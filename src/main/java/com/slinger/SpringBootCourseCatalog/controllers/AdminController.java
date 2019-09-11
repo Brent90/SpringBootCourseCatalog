@@ -2,9 +2,11 @@ package com.slinger.SpringBootCourseCatalog.controllers;
 
 import com.slinger.SpringBootCourseCatalog.entity.Course;
 import com.slinger.SpringBootCourseCatalog.entity.Instructor;
+import com.slinger.SpringBootCourseCatalog.entity.Student;
 import com.slinger.SpringBootCourseCatalog.pojos.IDHolder;
 import com.slinger.SpringBootCourseCatalog.service.CourseService;
 import com.slinger.SpringBootCourseCatalog.service.InstructorService;
+import com.slinger.SpringBootCourseCatalog.service.StudentService;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class AdminController {
 
     @Autowired
     private InstructorService instructorService;
+
+    @Autowired
+    private StudentService studentService;
 
     @RequestMapping("")
     public String adminHome() {
@@ -119,5 +124,33 @@ public class AdminController {
     }
 
     // END OF ADDING INSTRUCTOR TO COURSE CODE
+
+
+    //  START OF ADDING A STUDENT CODE
+    @RequestMapping("createStudent")
+    public String createStudent(Model model) {
+        Student student = new Student();
+        model.addAttribute("student", student);
+
+        return "admin-pages/create-student";
+    }
+
+    @PostMapping("processCreateStudentForm")
+    public String processCreateStudentForm(@ModelAttribute("student") Student student) {
+        studentService.saveStudent(student);
+
+        return "admin-pages/create-student-success";
+    }
+
+    @RequestMapping("/updateStudent")
+    public String updateStudent(@RequestParam("id") int id, Model model) {
+        //get student with given id
+        Student student = studentService.getStudentById(id);
+            //prepopulate form
+        model.addAttribute("student", student);
+
+        return "admin-pages/create-student";
+
+    }
 
 }

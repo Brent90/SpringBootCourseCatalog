@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <title>Added Student</title>
+</head>
+<body>
+
+
+<div class="container" style="padding: 30px;">
+
+    <h3>Student Created</h3>
+    <hr>
+
+    <h4>Student First Name</h4>
+    <p th:text="${student.firstName}"></p>
+    <hr>
+
+    <h4>Student Last Name</h4>
+    <p th:text="${student.lastName}"></p>
+    <hr>
+
+    <h4>Student Email</h4>
+    <p th:text="${student.email}"></p>
+    <hr>
+
+
+
+    <p><a th:href="@{/admin/updateStudent(id=${student.id})}">Edit Student</a></p>
+
+    <p><a th:href="@{/admin/createStudent}">Create New Student</a></p>
+
+    <p> <a th:href="@{/admin}">Go Back Home</a> </p>
+
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+</html>
