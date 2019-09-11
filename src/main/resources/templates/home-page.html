@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -8,14 +10,29 @@
 
 <body>
 
-<h2>Course Catalog </h2>
-
-<p>login should go here eventually...</p>
+<div class="container">
 
 
-<a th:href="@{/listInstructors}">List instructors</a>  <br>
-<a th:href="@{/listCourses}">List Courses</a>
+    <h2 style="padding: 15px;">Course Catalog Home Page </h2>
+    <hr>
 
+
+    Logged user: <span sec:authentication="name"></span> <br>
+    Roles: <span sec:authentication="principal.authorities"></span> <br>
+
+
+    <a th:href="@{/listInstructors}">List instructors</a>  <br>
+    <a th:href="@{/listCourses}">List Courses</a>
+
+
+    <div style="margin-top: 20px">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="logout">
+    </form>
+    </div>
+
+
+</div>
 
 
 </body>

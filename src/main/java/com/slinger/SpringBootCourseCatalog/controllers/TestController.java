@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class TestController {
 
-    @GetMapping("/")
-    public String showTestPage() {
-        System.out.println("success");
-        return "home-page";
-    }
+//    @GetMapping("/")
+//    public String showTestPage() {
+//        return "home-page";
+//    }
 
 
 
