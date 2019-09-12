@@ -18,15 +18,15 @@ public class DefaultController {
     }
 
 
-    @RequestMapping("/adminHomePage")
+    @RequestMapping("/admin")
     public String adminHome() {
         return "admin-pages/admin-home-page";
     }
 
-    @RequestMapping("/studentHomePage")
+    @RequestMapping("/student")
     public String showStudentHomePage() { return "student-pages/student-home-page"; }
 
-    @RequestMapping("/instructorHomePage")
+    @RequestMapping("/instructor")
     public String showInstructorHomePage() {
         return "instructor-pages/instructor-home-page";
     }
