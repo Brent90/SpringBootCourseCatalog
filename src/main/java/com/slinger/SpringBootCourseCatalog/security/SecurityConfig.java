@@ -1,6 +1,7 @@
 package com.slinger.SpringBootCourseCatalog.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,10 +17,14 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    DataSourceConfig config;
 
 
     @Autowired
@@ -32,13 +37,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //use jdbc authentication to get users
+        auth.jdbcAuthentication().dataSource(config.secondaryDataSource());
 
-       User.UserBuilder user = User.withDefaultPasswordEncoder();
 
-       auth.inMemoryAuthentication()
-               .withUser(user.username("admin").password("admin").roles("ADMIN"))
-               .withUser(user.username("tessa").password("petey").roles("STUDENT"))
-               .withUser(user.username("brent").password("petey").roles("INSTRUCTOR"));
+
+                //hard code users in.
+//       User.UserBuilder user = User.withDefaultPasswordEncoder();
+//
+//       auth.inMemoryAuthentication()
+//               .withUser(user.username("admin").password("admin").roles("ADMIN"))
+//               .withUser(user.username("tessa").password("petey").roles("STUDENT"))
+//               .withUser(user.username("brent").password("petey").roles("INSTRUCTOR"));
 
     }
 
