@@ -7,10 +7,8 @@ import com.slinger.SpringBootCourseCatalog.pojos.IDHolder;
 import com.slinger.SpringBootCourseCatalog.service.CourseService;
 import com.slinger.SpringBootCourseCatalog.service.InstructorService;
 import com.slinger.SpringBootCourseCatalog.service.StudentService;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,11 +24,6 @@ public class AdminController {
 
     @Autowired
     private StudentService studentService;
-
-    @RequestMapping("")
-    public String adminHome() {
-        return "admin-pages/admin-home";
-    }
 
 
 //    START OF CREATING NEW COURSE CODE
@@ -120,7 +113,7 @@ public class AdminController {
         instructorService.createInstructor(instructor);
 
 
-        return "admin-pages/admin-home";
+        return "admin-home-page";
     }
 
     // END OF ADDING INSTRUCTOR TO COURSE CODE

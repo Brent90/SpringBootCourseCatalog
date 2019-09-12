@@ -27,6 +27,8 @@ public class InstructorController {
         this.instructorService = instructorService;
     }
 
+
+
     @RequestMapping("/listInstructors")
     public String getAllInstructors(Model model) {
         List<Instructor> instructors = instructorService.getInstructors();
