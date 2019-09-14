@@ -38,8 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //use jdbc authentication to get users
-        auth.jdbcAuthentication().dataSource(config.secondaryDataSource());
-
+        auth.jdbcAuthentication().dataSource(config.primaryDataSource());
 
 
                 //hard code users in.

@@ -24,7 +24,9 @@ public class DefaultController {
     }
 
     @RequestMapping("/student")
-    public String showStudentHomePage() { return "student-pages/student-home-page"; }
+    public String showStudentHomePage() {
+        return "student-pages/student-home-page";
+    }
 
     @RequestMapping("/instructor")
     public String showInstructorHomePage() {

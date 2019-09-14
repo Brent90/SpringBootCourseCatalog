@@ -1,12 +1,8 @@
 package com.slinger.SpringBootCourseCatalog.controllers;
 
-import com.slinger.SpringBootCourseCatalog.entity.Course;
-import com.slinger.SpringBootCourseCatalog.entity.Instructor;
-import com.slinger.SpringBootCourseCatalog.entity.Student;
+import com.slinger.SpringBootCourseCatalog.entity.*;
 import com.slinger.SpringBootCourseCatalog.pojos.IDHolder;
-import com.slinger.SpringBootCourseCatalog.service.CourseService;
-import com.slinger.SpringBootCourseCatalog.service.InstructorService;
-import com.slinger.SpringBootCourseCatalog.service.StudentService;
+import com.slinger.SpringBootCourseCatalog.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +20,11 @@ public class AdminController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private UserService userService;
+
+
 
 
 //    START OF CREATING NEW COURSE CODE
@@ -131,6 +132,13 @@ public class AdminController {
     @PostMapping("processCreateStudentForm")
     public String processCreateStudentForm(@ModelAttribute("student") Student student) {
         studentService.saveStudent(student);
+
+        String username = student.getEmail();
+        String password = "{noop}password";
+        User user = new User(username, password, 1);
+        user.setAuthorities(new Authorities(username, "ROLE_STUDENT"));
+
+        userService.save(user);
 
         return "admin-pages/create-student-success";
     }
