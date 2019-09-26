@@ -1,9 +1,14 @@
 package com.slinger.SpringBootCourseCatalog.controllers;
 
 import com.slinger.SpringBootCourseCatalog.entity.Course;
+import com.slinger.SpringBootCourseCatalog.entity.Instructor;
+import com.slinger.SpringBootCourseCatalog.entity.Student;
 import com.slinger.SpringBootCourseCatalog.pojos.Department;
 import com.slinger.SpringBootCourseCatalog.service.CourseService;
+import com.slinger.SpringBootCourseCatalog.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +21,10 @@ import java.util.List;
 @Controller
 public class CourseController {
 
+    @Autowired
+    private StudentService studentService;
+
+
     private CourseService courseService;
 
     @Autowired
@@ -26,9 +35,21 @@ public class CourseController {
     @RequestMapping("/listCourses")
     public String getAllCourse(Model model) {
         List<Course> courses = courseService.getAllCourses();
+        Instructor emptyInstructor = new Instructor();
+
+        //prevents null pointer from being thrown when trying to display a course with no instructor
+        for(Course c : courses) {
+            if(c.getInstructor() == null) {
+                c.setInstructor(emptyInstructor);
+            }
+        }
+
+        //get current student
+        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Student student = studentService.findStudentByEmail(authUser.getUsername());
+        model.addAttribute("student", student);
+
         model.addAttribute("courses", courses);
-
-
 
         return "course-pages/list-all-courses";
     }
@@ -38,6 +59,8 @@ public class CourseController {
     public String getCourseDescription(@RequestParam("courseId") int id, Model model) {
         Course course = courseService.getCourseById(id);
         model.addAttribute("course", course);
+
+
 
         if(course.getDescription().isEmpty()) {
             course.setDescription("Sorry no description available");
@@ -62,6 +85,7 @@ public class CourseController {
         List<Course> courses = courseService.getCoursesByDepartment(department);
         model.addAttribute("courses", courses);
 
+
         return "course-pages/list-all-courses";
     }
 
@@ -84,6 +108,19 @@ public class CourseController {
 
         return departmentList;
     }
+
+
+
+
+//    @RequestMapping("/courseInstructors")
+//    public List<Instructor>  getCourseInstructors(@RequestParam("courseId") int id, Model model) {
+//        List<Instructor> instructors;
+//        Course course = courseService.getCourseById(id);
+//        instructors = course.getInstructors();
+//        return instructors;
+//    }
+
+
 
 
 }

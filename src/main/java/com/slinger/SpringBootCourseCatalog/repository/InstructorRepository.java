@@ -9,6 +9,9 @@ import java.util.List;
 
 public interface InstructorRepository extends JpaRepository<Instructor, Integer> {
 
+    @Query("Select c from Instructor c where c.firstName like %:fullName%")
+    Instructor findByPlaceContaining(String fullName);
+
     List<Instructor> findByOrderByLastNameAsc();
 
 }

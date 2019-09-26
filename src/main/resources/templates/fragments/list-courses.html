@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+
+<div th:fragment="list-courses">
+
+    <table class="table table-hover">
+
+        <thead>
+        <tr>
+            <th>CourseId</th>
+            <th>Title</th>
+            <th>Credit Hours</th>
+            <th>Department</th>
+            <th>Instructor</th>
+            <th>Description</th>
+
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="temp : ${courses}">
+            <td th:text="${temp.courseId}"></td>
+            <td th:text="${temp.title}"></td>
+            <td th:text="${temp.creditHours}"></td>
+            <td th:text="${temp.department}"></td>
+
+            <td>
+                <a th:href="@{/instructorDetails(courseId=${temp.id})}"
+                    th:text="${temp.instructor.FullName}"
+                ></a>
+            </td>
+
+            <td>
+                <a class="btn btn-info btn-sm"
+                   th:href="@{/courseDescription(courseId=${temp.id})}">
+                    Description</a>
+            </td>
+
+
+            <td >
+                <form style="margin-top: -5px;" th:action="@{addCourseToStudent}" method="post"  >
+                    <!--                    grabs course id-->
+                    <input style="display:none;" type="hidden" th:value="${temp.id}" name="courseId">
+
+                    <input class="btn btn-info btn-sm" type="submit" value="Add">
+
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<!--same as about but with option to drop a course-->
+
+<div th:fragment="student-courses">
+
+    <div class="table-responsive text-nowrap">
+
+    <table class="table table-hover">
+
+        <thead >
+        <tr>
+            <th>CourseId</th>
+            <th>Title</th>
+            <th>Credit Hours</th>
+            <th>Department</th>
+            <th>Instructor</th>
+            <th>Description</th>
+
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="temp : ${courses}">
+            <td th:text="${temp.courseId}"></td>
+            <td th:text="${temp.title}"></td>
+            <td th:text="${temp.creditHours}"></td>
+            <td th:text="${temp.department}"></td>
+
+            <td>
+                <a th:href="@{/instructorDetails(courseId=${temp.id})}"
+                   th:text="${temp.instructor.FullName}"
+                ></a>
+            </td>
+
+            <td>
+                <a class="btn btn-info btn-sm"
+                   th:href="@{/courseDescription(courseId=${temp.id})}">
+                    Description</a>
+            </td>
+
+
+            <td>
+
+                <form style="margin-top: -5px;" action="#" method="post"  >
+                    <!--                    grabs course id-->
+                    <input type="hidden" th:value="${temp.id}" name="courseId">
+
+                    <input  class="btn btn-info btn-sm" type="submit" value="Drop Course">
+
+                </form>
+
+
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+
+
+
+
+
+</html>

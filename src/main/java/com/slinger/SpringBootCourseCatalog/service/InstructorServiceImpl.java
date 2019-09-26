@@ -33,7 +33,10 @@ public class InstructorServiceImpl implements InstructorService {
         return instructorRepository.findById(id).get();
     }
 
-
+    @Override
+    public Instructor findInstructorByFullName(String fullName) {
+        return instructorRepository.findByPlaceContaining(fullName);
+    }
 
 
 //    @Override

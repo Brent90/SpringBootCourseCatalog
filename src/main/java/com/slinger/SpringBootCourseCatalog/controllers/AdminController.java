@@ -4,9 +4,15 @@ import com.slinger.SpringBootCourseCatalog.entity.*;
 import com.slinger.SpringBootCourseCatalog.pojos.IDHolder;
 import com.slinger.SpringBootCourseCatalog.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.NoResultException;
+import javax.validation.Valid;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @Controller
 @RequestMapping("/admin")
@@ -106,15 +112,16 @@ public class AdminController {
     public String processInstructorToCourse(@ModelAttribute("id_Holder") IDHolder holder) {
         int courseId = holder.getCourseId();
         int instructorId = holder.getInstructorId();
+
         Course course = courseService.getCourseById(courseId);
         Instructor instructor = instructorService.getInstructorById(instructorId);
 
-        instructor.addCourse(course);
-
+        course.setInstructor(instructor);
+        courseService.createCourse(course);
         instructorService.createInstructor(instructor);
 
 
-        return "admin-home-page";
+        return "admin-pages/admin-home-page";
     }
 
     // END OF ADDING INSTRUCTOR TO COURSE CODE
@@ -131,16 +138,35 @@ public class AdminController {
 
     @PostMapping("processCreateStudentForm")
     public String processCreateStudentForm(@ModelAttribute("student") Student student) {
-        studentService.saveStudent(student);
-
         String username = student.getEmail();
+
+//        studentService.saveStudent(student);
+
         String password = "{noop}password";
         User user = new User(username, password, 1);
         user.setAuthorities(new Authorities(username, "ROLE_STUDENT"));
 
-        userService.save(user);
 
-        return "admin-pages/create-student-success";
+      try {
+
+          //check if user is already in database
+          try {
+              userService.save(user);
+          } catch (Exception ex) {
+              //fix this later to make it user friendly
+              throw new RuntimeException("user already created");
+          }
+
+          studentService.saveStudent(student);
+
+          return "admin-pages/create-student-success";
+      }catch(DataIntegrityViolationException e) {
+          //catch the duplicate to prevent spring from throwing exception and return to success page to edit
+          return "admin-pages/create-student-success";
+      }
+
+
+
     }
 
     @RequestMapping("/updateStudent")

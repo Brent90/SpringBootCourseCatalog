@@ -1,6 +1,7 @@
 package com.slinger.SpringBootCourseCatalog.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -81,6 +82,16 @@ public class Student {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
+
+    public void addCourse(Course course) {
+        if(courses == null) {
+            courses = new ArrayList<>();
+        }
+        courses.add(course);
+    }
+
+
+
 
     @Override
     public String toString() {

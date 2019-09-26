@@ -13,6 +13,8 @@ public interface InstructorService {
 
     public Instructor getInstructorById(int id);
 
+    public Instructor findInstructorByFullName(String fullName);
+
 //    public void addCourse(Instructor instructor, Course course);
 
 

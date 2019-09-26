@@ -2,20 +2,31 @@
 <html lang="es"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Welcome</title>
+<head th:replace="fragments/bootstrap-cdn::cdn">
+
 </head>
 
 <body>
 
+<div th:replace="fragments/navbar::navbar"></div>
+
+
 <div class="container">
 
-    <h2 th:text="${student.firstName}">Student Home Page</h2>
+    <h4>Current Courses</h4>
+
+    <div th:replace="fragments/list-courses::student-courses"></div>
+
 
 
     <hr>
+
+    <div style="margin-top: 20px">
+        <form th:action="@{/listCourses}" method="post">
+            <input type="submit" value="Search Courses">
+        </form>
+    </div>
+
     <div style="margin-top: 20px">
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="logout">

@@ -41,11 +41,15 @@ public class InstructorController {
     @RequestMapping("/instructorDetails")
     public String getInstructorDetail(@RequestParam("courseId") int id, Model model) {
         Course course = courseService.getCourseById(id);
-        List<Instructor> instructors = course.getInstructors();
 
-        if(instructors.isEmpty()) {
+
+
+        Instructor instructors = course.getInstructor();
+
+        if(instructors == null) {
             return "instructor-pages/no-instructor-found";
         }
+
 
         model.addAttribute("instructors", instructors);
         return "instructor-pages/list-detail-update";

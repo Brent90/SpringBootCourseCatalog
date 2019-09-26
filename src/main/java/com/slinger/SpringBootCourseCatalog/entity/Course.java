@@ -29,15 +29,23 @@ public class Course {
     private String department;
 
 
-    @ManyToMany(
-            fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    @JoinTable(
-            name = "course_instructor",
-            joinColumns = @JoinColumn(name="course_join_id"),
-            inverseJoinColumns = @JoinColumn(name = "instructor_id")
-    )
-    private List<Instructor> instructors;
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name="instructor_id")
+    private Instructor instructor;
+
+
+
+
+//    @ManyToMany(
+//            fetch = FetchType.LAZY,
+//            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+//    @JoinTable(
+//            name = "course_instructor",
+//            joinColumns = @JoinColumn(name="course_join_id"),
+//            inverseJoinColumns = @JoinColumn(name = "instructor_id")
+//    )
+//    private List<Instructor> instructors;
 
 
 
@@ -64,6 +72,8 @@ public class Course {
         this.creditHours = creditHours;
         this.department = department;
     }
+
+
 
     public int getId() {
         return id;
@@ -114,13 +124,13 @@ public class Course {
     }
 
 
-    public List<Instructor> getInstructors() {
-        return instructors;
-    }
-
-    public void setInstructors(List<Instructor> instructors) {
-        this.instructors = instructors;
-    }
+//    public List<Instructor> getInstructors() {
+//        return instructors;
+//    }
+//
+//    public void setInstructors(List<Instructor> instructors) {
+//        this.instructors = instructors;
+//    }
 
 
     public List<Student> getStudents() {
@@ -138,15 +148,43 @@ public class Course {
         students.add(student);
     }
 
+
+//    public List<String> getInstructorName() {
+//        List<String> instructorNames = new ArrayList<>();
+//
+//        for(Instructor in : instructors) {
+//            instructorNames.add(in.getFullName());
+//        }
+//        return instructorNames;
+//    }
+//
+//    public void addInstructor(Instructor instructor) {
+//        if(instructors == null) {
+//            instructors = new ArrayList<>();
+//        }
+//        instructors.add(instructor);
+//    }
+
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", CourseId='" + CourseId + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", creditHours='" + creditHours + '\'' +
                 ", department='" + department + '\'' +
+                ", instructor=" + instructor +
+                ", students=" + students +
                 '}';
     }
 }

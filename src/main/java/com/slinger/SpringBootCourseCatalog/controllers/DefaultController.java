@@ -1,11 +1,23 @@
 package com.slinger.SpringBootCourseCatalog.controllers;
+import com.slinger.SpringBootCourseCatalog.entity.Course;
+import com.slinger.SpringBootCourseCatalog.entity.Student;
+import com.slinger.SpringBootCourseCatalog.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 public class DefaultController {
+
+    @Autowired
+    private StudentService studentService;
 
     @GetMapping("/")
     public String showTestPage() {
@@ -24,7 +36,15 @@ public class DefaultController {
     }
 
     @RequestMapping("/student")
-    public String showStudentHomePage() {
+    public String showStudentHomePage(Model model) {
+        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Student student = studentService.findStudentByEmail(authUser.getUsername());
+        model.addAttribute("student", student);
+
+        List<Course> courses = student.getCourses();
+        model.addAttribute("courses", courses);
+
         return "student-pages/student-home-page";
     }
 
