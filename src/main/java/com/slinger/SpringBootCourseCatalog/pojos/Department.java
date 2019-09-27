@@ -21,4 +21,11 @@ public class Department {
     public void setDepartment(String department) {
         this.department = department;
     }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "department='" + department + '\'' +
+                '}';
+    }
 }

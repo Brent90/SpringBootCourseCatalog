@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<div th:fragment="drop-down">
+
+    <!--Dropdown primary-->
+    <div class="dropdown">
+
+        <!--Trigger-->
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Search By Department</button>
+
+        <!--Menu-->
+        <div class="dropdown-menu dropdown-primary">
+           <div th:each="temp : ${departments}">
+               <a th:href="@{/searchByDepartment(department=${temp.department})}"  th:value="${temp.getDepartment()}"  th:text = "${temp.getDepartment()}"></a>
+           </div>
+        </div>
+
+
+    </div>
+    <!--/Dropdown primary-->
+
+
+
+
+</div>
+
+
+
+</html>
+
+
+
+
+
