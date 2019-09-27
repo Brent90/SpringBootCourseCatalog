@@ -174,6 +174,12 @@ public class Course {
         this.instructor = instructor;
     }
 
+    public void dropStudent(Student s) {
+            int index = students.indexOf(s);
+    }
+
+
+
     @Override
     public String toString() {
         return "Course{" +

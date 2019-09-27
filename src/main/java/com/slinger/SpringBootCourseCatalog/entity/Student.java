@@ -90,6 +90,13 @@ public class Student {
         courses.add(course);
     }
 
+    public void dropCourse(int courseId) {
+        for(Course c : courses) {
+            if(c.getId() == courseId) {
+                courses.remove(courses.get(courseId));
+            }
+        }
+    }
 
 
 

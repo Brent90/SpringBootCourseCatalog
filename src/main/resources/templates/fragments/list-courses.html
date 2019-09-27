@@ -62,11 +62,9 @@
 
 <div th:fragment="student-courses">
 
-    <div class="table-responsive text-nowrap">
-
     <table class="table table-hover">
 
-        <thead >
+        <thead>
         <tr>
             <th>CourseId</th>
             <th>Title</th>
@@ -100,24 +98,19 @@
 
 
             <td>
-
-                <form style="margin-top: -5px;" action="#" method="post"  >
-                    <!--                    grabs course id-->
-                    <input type="hidden" th:value="${temp.id}" name="courseId">
-
-                    <input  class="btn btn-info btn-sm" type="submit" value="Drop Course">
-
-                </form>
-
-
+                <a class="btn btn-info btn-sm"
+                   th:href="@{/dropCourse(courseId=${temp.id})}">
+                    Drop</a>
             </td>
 
         </tr>
+
         </tbody>
     </table>
-</div>
+
 
 </div>
+
 
 
 

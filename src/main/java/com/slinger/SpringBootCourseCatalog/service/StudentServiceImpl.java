@@ -17,6 +17,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired CourseRepository courseRepository;
+
     @Override
     public Student getStudentById(int id) {
         return studentRepository.findById(id).get();
@@ -31,7 +33,6 @@ public class StudentServiceImpl implements StudentService {
     public Student findStudentByEmail(String email) {
         return studentRepository.findByPlaceContaining(email);
     }
-
 
 
 

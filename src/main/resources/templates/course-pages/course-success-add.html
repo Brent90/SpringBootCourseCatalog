@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Already Addded!!</title>
+    <title>Course Added!</title>
 
 </head>
 
 
 <div class="container" style="text-align: center; padding: 50px;">
 
-    <h4>You have already added <span th:text="${course.courseId}"> </span></h4>
+    <h4>You have added <span th:text="${course.courseId}"> </span></h4>
 
-    <a th:href="@{/listCourses}">Go Back</a>
+    <a th:href="@{/listCourses}">Go Back</a>  <br>
+    <a th:href="@{/student}">Home Page</a>
 
 </div>
 

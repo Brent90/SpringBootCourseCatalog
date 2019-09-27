@@ -2,6 +2,7 @@ package com.slinger.SpringBootCourseCatalog.service;
 
 import com.slinger.SpringBootCourseCatalog.entity.Course;
 import com.slinger.SpringBootCourseCatalog.repository.CourseRepository;
+import com.slinger.SpringBootCourseCatalog.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 public class CourseServiceImpl implements CourseService {
+
 
     private CourseRepository courseRepository;
 
@@ -37,6 +39,7 @@ public class CourseServiceImpl implements CourseService {
         courseRepository.save(course);
 
     }
+
 
 
 }

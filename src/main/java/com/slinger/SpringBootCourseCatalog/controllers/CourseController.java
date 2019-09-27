@@ -24,13 +24,9 @@ public class CourseController {
     @Autowired
     private StudentService studentService;
 
-
+    @Autowired
     private CourseService courseService;
 
-    @Autowired
-    public CourseController(CourseService courseService) {
-        this.courseService = courseService;
-    }
 
     @RequestMapping("/listCourses")
     public String getAllCourse(Model model) {
@@ -52,8 +48,6 @@ public class CourseController {
     public String getCourseDescription(@RequestParam("courseId") int id, Model model) {
         Course course = courseService.getCourseById(id);
         model.addAttribute("course", course);
-
-
 
         if(course.getDescription().isEmpty()) {
             course.setDescription("Sorry no description available");

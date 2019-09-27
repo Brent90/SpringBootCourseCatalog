@@ -15,7 +15,7 @@
         <!--Menu-->
         <div class="dropdown-menu dropdown-primary">
            <div th:each="temp : ${departments}">
-               <a th:href="@{/searchByDepartment(department=${temp.department})}"  th:value="${temp.getDepartment()}"  th:text = "${temp.getDepartment()}"></a>
+               <a class="dropdown-item"  th:href="@{/searchByDepartment(department=${temp.department})}"  th:value="${temp.getDepartment()}"  th:text = "${temp.getDepartment()}"></a>
            </div>
         </div>
 

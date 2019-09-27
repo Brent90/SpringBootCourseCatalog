@@ -1,5 +1,6 @@
 package com.slinger.SpringBootCourseCatalog.controllers;
 import com.slinger.SpringBootCourseCatalog.entity.Course;
+import com.slinger.SpringBootCourseCatalog.entity.Instructor;
 import com.slinger.SpringBootCourseCatalog.entity.Student;
 import com.slinger.SpringBootCourseCatalog.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class DefaultController {
         model.addAttribute("student", student);
 
         List<Course> courses = student.getCourses();
+
         model.addAttribute("courses", courses);
 
         return "student-pages/student-home-page";
