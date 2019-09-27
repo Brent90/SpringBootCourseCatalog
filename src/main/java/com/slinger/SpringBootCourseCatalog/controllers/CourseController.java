@@ -35,14 +35,7 @@ public class CourseController {
     @RequestMapping("/listCourses")
     public String getAllCourse(Model model) {
         List<Course> courses = courseService.getAllCourses();
-        Instructor emptyInstructor = new Instructor();
-
-        //prevents null pointer from being thrown when trying to display a course with no instructor
-        for(Course c : courses) {
-            if(c.getInstructor() == null) {
-                c.setInstructor(emptyInstructor);
-            }
-        }
+        checkForNullInstructors(courses);
 
         //get current student
         User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -71,25 +64,6 @@ public class CourseController {
 
 
 
-//    @RequestMapping("/searchByDepartment")
-//    public String searchByDepartment(@ModelAttribute("department") Department selected, Model model) {
-//        String department = selected.getDepartment();
-//
-//        if(department.equals("All")) {
-//            List<Course> courses = courseService.getAllCourses();
-//            model.addAttribute("courses", courses);
-//            return "course-pages/list-all-courses";
-//        }
-//
-//
-//        List<Course> courses = courseService.getCoursesByDepartment(department);
-//        model.addAttribute("courses", courses);
-//
-//
-//        return "course-pages/list-all-courses";
-//    }
-
-
 
     @RequestMapping("/searchByDepartment")
     public String searchByDepartment(@ModelAttribute("department") Department selected, Model model) {
@@ -97,23 +71,22 @@ public class CourseController {
 
         String department = selected.getDepartment();
 
-        System.out.println(department);
-
         if(department.equals("All")) {
             List<Course> courses = courseService.getAllCourses();
+            checkForNullInstructors(courses);
             model.addAttribute("courses", courses);
             return "course-pages/list-all-courses";
         }
 
 
         List<Course> courses = courseService.getCoursesByDepartment(department);
+        checkForNullInstructors(courses);
+
         model.addAttribute("courses", courses);
 
 
         return "course-pages/list-all-courses";
     }
-
-
 
 
 
@@ -137,6 +110,17 @@ public class CourseController {
 
         return departmentList;
     }
+
+
+    public void checkForNullInstructors(List<Course> courses) {
+        for(Course c : courses) {
+            if(c.getInstructor() == null) {
+                Instructor emptyInstructor = new Instructor();
+                c.setInstructor(emptyInstructor);
+            }
+        }
+    }
+
 
 
 
