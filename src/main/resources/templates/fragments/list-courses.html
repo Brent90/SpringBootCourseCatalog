@@ -99,7 +99,10 @@
 
             <td>
                 <a class="btn btn-info btn-sm"
-                   th:href="@{/dropCourse(courseId=${temp.id})}">
+                   id="drop-class"
+                   th:href="@{/dropCourse(courseId=${temp.id})}"
+                   onclick="if (!(confirm('Are you sure you want to drop this class?'))) return false"
+                 >
                     Drop</a>
             </td>
 

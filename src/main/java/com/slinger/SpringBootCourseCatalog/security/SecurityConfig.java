@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,6 +70,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+
+//    add css path
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
+    }
 
 
 
