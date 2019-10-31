@@ -76,14 +76,50 @@ public class AdminController {
         model.addAttribute("instructor", instructor);
 
         return "admin-pages/create-instructor";
+
+
     }
 
     @PostMapping("/processCreateInstructorForm")
     public String processCreateInstructorForm(@ModelAttribute("instructor") Instructor newInstructor, Model model) {
-        instructorService.createInstructor(newInstructor);
-        model.addAttribute("instructor", newInstructor);
+//        instructorService.createInstructor(newInstructor);
+//        model.addAttribute("instructor", newInstructor);
+//
+//        return "admin-pages/create-instructor-success";
 
-        return "admin-pages/create-instructor-success";
+        String username = newInstructor.getFirstName();
+
+//        studentService.saveStudent(student);
+
+        String password = "{noop}password";
+        User user = new User(username, password, 1);
+        user.setAuthorities(new Authorities(username, "ROLE_INSTRUCTOR"));
+
+
+        try {
+
+            //check if user is already in database
+            try {
+                userService.save(user);
+            } catch (Exception ex) {
+                //fix this later to make it user friendly
+                throw new RuntimeException("user already created");
+            }
+
+            instructorService.createInstructor(newInstructor);
+
+            return "admin-pages/create-instructor-success";
+        }catch(DataIntegrityViolationException e) {
+            //catch the duplicate to prevent spring from throwing exception and return to success page to edit
+            return "admin-pages/create-instructor-success";
+        }
+
+
+
+
+
+
+
     }
 
     @RequestMapping("/updateInstructor")

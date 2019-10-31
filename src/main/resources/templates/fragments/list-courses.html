@@ -22,43 +22,36 @@
         </thead>
 
         <tbody>
-        <tr th:each="temp : ${courses}">
-            <td th:text="${temp.courseId}"></td>
-            <td th:text="${temp.title}"></td>
-            <td th:text="${temp.creditHours}"></td>
-            <td th:text="${temp.department}"></td>
+            <tr th:each="temp : ${courses}">
+                <td th:text="${temp.courseId}"></td>
+                <td th:text="${temp.title}"></td>
+                <td th:text="${temp.creditHours}"></td>
+                <td th:text="${temp.department}"></td>
 
-            <td>
-                <a th:href="@{/instructorDetails(courseId=${temp.id})}"
-                    th:text="${temp.instructor.FullName}"
-                ></a>
-            </td>
+                <td>
+                    <a th:href="@{/instructorDetails(courseId=${temp.id})}"
+                        th:text="${temp.instructor.FullName}"
+                    ></a>
+                </td>
 
-            <td>
-                <a class="btn btn-info btn-sm"
-                   th:href="@{/courseDescription(courseId=${temp.id})}">
-                    Description</a>
-            </td>
+                <td>
+                    <a class="btn btn-info btn-sm"
+                       th:href="@{/courseDescription(courseId=${temp.id})}"
+                       target="_blank"
+                    >
+                        Description</a>
+                </td>
 
-            <td>
-                <a class="btn btn-info btn-sm"
-                   th:href="@{/addCourseToStudent(courseId=${temp.id})}"
-                   >Add</a>
-            </td>
+                <td>
+                    <a class="btn btn-info btn-sm"
+                       th:href="@{/addCourseToStudent(courseId=${temp.id})}"
+                       >Add</a>
+                </td>
 
-<!--            <td >-->
-<!--                <form style="margin-top: -5px;" th:action="@{addCourseToStudent}" method="post"  >-->
-<!--                    &lt;!&ndash;                    grabs course id&ndash;&gt;-->
-<!--                    <input style="display:none;" type="hidden" th:value="${temp.id}" name="courseId">-->
-
-<!--                    <input class="btn btn-info btn-sm" type="submit" value="Add">-->
-
-<!--                </form>-->
-<!--            </td>-->
-
-        </tr>
+            </tr>
         </tbody>
     </table>
+
 </div>
 
 
@@ -83,35 +76,37 @@
         </thead>
 
         <tbody>
-        <tr th:each="temp : ${courses}">
-            <td th:text="${temp.courseId}"></td>
-            <td th:text="${temp.title}"></td>
-            <td th:text="${temp.creditHours}"></td>
-            <td th:text="${temp.department}"></td>
+            <tr th:each="temp : ${courses}">
+                <td th:text="${temp.courseId}"></td>
+                <td th:text="${temp.title}"></td>
+                <td th:text="${temp.creditHours}"></td>
+                <td th:text="${temp.department}"></td>
 
-            <td>
-                <a th:href="@{/instructorDetails(courseId=${temp.id})}"
-                   th:text="${temp.instructor.FullName}"
-                ></a>
-            </td>
+                <td>
+                    <a th:href="@{/instructorDetails(courseId=${temp.id})}"
+                       th:text="${temp.instructor.FullName}"
+                    ></a>
+                </td>
 
-            <td>
-                <a class="btn btn-info btn-sm"
-                   th:href="@{/courseDescription(courseId=${temp.id})}">
-                    Description</a>
-            </td>
+                <td>
+                    <a class="btn btn-info btn-sm"
+                       th:href="@{/courseDescription(courseId=${temp.id})}"
+                       target="_blank"
+                        >
+                        Description</a>
+                </td>
 
 
-            <td>
-                <a class="btn btn-info btn-sm"
-                   id="drop-class"
-                   th:href="@{/dropCourse(courseId=${temp.id})}"
-                   onclick="if (!(confirm('Are you sure you want to drop this class?'))) return false"
-                 >
-                    Drop</a>
-            </td>
+                <td>
+                    <a class="btn btn-info btn-sm"
+                       id="drop-class"
+                       th:href="@{/dropCourse(courseId=${temp.id})}"
+                       onclick="if (!(confirm('Are you sure you want to drop this class?'))) return false"
+                     >
+                        Drop</a>
+                </td>
 
-        </tr>
+            </tr>
 
         </tbody>
     </table>

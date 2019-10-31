@@ -3,7 +3,6 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="fragments/bootstrap-cdn::cdn">
-
 </head>
 
 <body>
@@ -12,6 +11,8 @@
 
 
 <div class="container">
+
+    <h1 style="padding: 15px; text-align: center">Welcome <span th:text="${student.firstName}"></span></h1>
 
     <h4>Current Courses</h4>
 
